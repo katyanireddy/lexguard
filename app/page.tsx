@@ -235,134 +235,135 @@ export default function Home() {
                     Company ({result?.overall_risk_score || 0}%)
                   </span>
                 </div>
-
-                <div className="bg-[#10172A] border border-white/10 rounded-3xl p-6">
-                  <h3 className="text-lg font-semibold mb-3 text-indigo-300">
-                    AI Confidence
-                  </h3>
-
-                  <h2>{result?.confidence_score ?? 92}%</h2>
-
-                  <p className="text-slate-300 text-sm">
-                    LexGuard is highly confident in the identified contractual risks and implications.
-                  </p>
-                </div>
-
               </div>
 
-              {/* Main Split Layout */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mt-8">
-                {/* Left Panel: Contract Preview */}
-                <div className="lg:col-span-5 bg-white border border-slate-200 rounded-3xl p-6 lg:sticky lg:top-8 shadow-sm">
-                  <div className="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-100">
-                    <svg className="w-5 h-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    <h3 className="font-semibold text-slate-800">Contract Preview</h3>
-                  </div>
-                  <textarea
-                    value={contractText}
-                    readOnly
-                    className="w-full h-[600px] bg-transparent text-slate-600 text-sm leading-relaxed resize-none outline-none custom-scrollbar pr-2"
-                  />
+              <div className="bg-[#10172A] border border-white/10 rounded-3xl p-6">
+                <h3 className="text-lg font-semibold mb-3 text-indigo-300">
+                  AI Confidence
+                </h3>
+
+                <h2>{result?.confidence_score ?? 92}%</h2>
+
+                <p className="text-slate-300 text-sm">
+                  LexGuard is highly confident in the identified contractual risks and implications.
+                </p>
+              </div>
+
+            </div>
+
+            {/* Main Split Layout */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mt-8">
+              {/* Left Panel: Contract Preview */}
+              <div className="lg:col-span-5 bg-white border border-slate-200 rounded-3xl p-6 lg:sticky lg:top-8 shadow-sm">
+                <div className="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-100">
+                  <svg className="w-5 h-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <h3 className="font-semibold text-slate-800">Contract Preview</h3>
+                </div>
+                <textarea
+                  value={contractText}
+                  readOnly
+                  className="w-full h-[600px] bg-transparent text-slate-600 text-sm leading-relaxed resize-none outline-none custom-scrollbar pr-2"
+                />
+              </div>
+
+              {/* Right Panel: AI Insights */}
+              <div className="lg:col-span-7 space-y-6">
+                <div className="flex items-center space-x-3 mb-6 px-2">
+                  <div className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></div>
+                  <h3 className="font-semibold text-slate-800 text-lg">AI Risk Insights</h3>
                 </div>
 
-                {/* Right Panel: AI Insights */}
-                <div className="lg:col-span-7 space-y-6">
-                  <div className="flex items-center space-x-3 mb-6 px-2">
-                    <div className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></div>
-                    <h3 className="font-semibold text-slate-800 text-lg">AI Risk Insights</h3>
-                  </div>
+                {result.clauses.map((clause: any, index: number) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    className="bg-white border border-slate-200 rounded-3xl p-6 lg:p-8 shadow-sm hover:border-slate-300 transition-all duration-300 hover:scale-[1.01] hover:shadow-xl group"
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-100">
+                      <h2 className="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
+                        {clause.clause_type}
+                      </h2>
+                      <span className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border ${getSeverityColor(clause.severity)}`}>
+                        {clause.severity}
+                      </span>
+                    </div>
 
-                  {result.clauses.map((clause: any, index: number) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
-                      className="bg-white border border-slate-200 rounded-3xl p-6 lg:p-8 shadow-sm hover:border-slate-300 transition-all duration-300 hover:scale-[1.01] hover:shadow-xl group"
-                    >
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-100">
-                        <h2 className="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
-                          {clause.clause_type}
-                        </h2>
-                        <span className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border ${getSeverityColor(clause.severity)}`}>
-                          {clause.severity}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                      <div className="space-y-1.5">
+                        <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider flex items-center space-x-2">
+                          <svg className="w-3.5 h-3.5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                          </svg>
+                          <span>Who Benefits</span>
                         </span>
+                        <p className="text-slate-700 text-sm leading-relaxed">{clause.who_benefits}</p>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-                        <div className="space-y-1.5">
-                          <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider flex items-center space-x-2">
-                            <svg className="w-3.5 h-3.5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                            </svg>
-                            <span>Who Benefits</span>
-                          </span>
-                          <p className="text-slate-700 text-sm leading-relaxed">{clause.who_benefits}</p>
-                        </div>
+                      <div className="space-y-1.5">
+                        <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider flex items-center space-x-2">
+                          <svg className="w-3.5 h-3.5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                          </svg>
+                          <span>Why It’s Risky</span>
+                        </span>
+                        <p className="text-slate-700 text-sm leading-relaxed">{clause.why_it_is_risky}</p>
+                      </div>
 
-                        <div className="space-y-1.5">
-                          <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider flex items-center space-x-2">
-                            <svg className="w-3.5 h-3.5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                            </svg>
-                            <span>Why It’s Risky</span>
-                          </span>
-                          <p className="text-slate-700 text-sm leading-relaxed">{clause.why_it_is_risky}</p>
-                        </div>
+                      <div className="space-y-1.5">
+                        <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider flex items-center space-x-2">
+                          <svg className="w-3.5 h-3.5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          <span>Real-World Consequence</span>
+                        </span>
+                        <p className="text-slate-700 text-sm leading-relaxed">{clause.real_world_consequence}</p>
+                      </div>
 
-                        <div className="space-y-1.5">
-                          <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider flex items-center space-x-2">
-                            <svg className="w-3.5 h-3.5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Real-World Consequence</span>
-                          </span>
-                          <p className="text-slate-700 text-sm leading-relaxed">{clause.real_world_consequence}</p>
-                        </div>
+                      <div className="space-y-1.5">
+                        <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider flex items-center space-x-2">
+                          <svg className="w-3.5 h-3.5 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                          </svg>
+                          <span>What Most Miss</span>
+                        </span>
+                        <p className="text-slate-700 text-sm leading-relaxed">{clause.what_users_may_miss}</p>
+                      </div>
 
+                      <div className="col-span-1 md:col-span-2 bg-indigo-50 rounded-2xl p-4 mt-2 border border-indigo-100">
                         <div className="space-y-1.5">
-                          <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider flex items-center space-x-2">
-                            <svg className="w-3.5 h-3.5 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                          <span className="text-xs font-bold text-indigo-700 uppercase tracking-wider flex items-center space-x-2">
+                            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                             </svg>
-                            <span>What Most Miss</span>
+                            <span>Negotiation Tip</span>
                           </span>
-                          <p className="text-slate-700 text-sm leading-relaxed">{clause.what_users_may_miss}</p>
-                        </div>
-
-                        <div className="col-span-1 md:col-span-2 bg-indigo-50 rounded-2xl p-4 mt-2 border border-indigo-100">
-                          <div className="space-y-1.5">
-                            <span className="text-xs font-bold text-indigo-700 uppercase tracking-wider flex items-center space-x-2">
-                              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                              </svg>
-                              <span>Negotiation Tip</span>
-                            </span>
-                            <p className="text-indigo-900 text-sm leading-relaxed">{clause.negotiation_tip}</p>
-                          </div>
+                          <p className="text-indigo-900 text-sm leading-relaxed">{clause.negotiation_tip}</p>
                         </div>
                       </div>
-                    </motion.div>
-                  ))}
+                    </div>
+                  </motion.div>
+                ))}
 
-                  <div className="flex justify-center pt-8 pb-12">
-                    <button
-                      onClick={() => {
-                        setResult(null);
-                        setContractText("");
-                      }}
-                      className="text-slate-500 hover:text-indigo-600 text-sm font-medium transition-colors border border-slate-200 px-6 py-2.5 rounded-full hover:bg-slate-50 bg-white shadow-sm"
-                    >
-                      Analyze Another Contract
-                    </button>
-                  </div>
+                <div className="flex justify-center pt-8 pb-12">
+                  <button
+                    onClick={() => {
+                      setResult(null);
+                      setContractText("");
+                    }}
+                    className="text-slate-500 hover:text-indigo-600 text-sm font-medium transition-colors border border-slate-200 px-6 py-2.5 rounded-full hover:bg-slate-50 bg-white shadow-sm"
+                  >
+                    Analyze Another Contract
+                  </button>
                 </div>
               </div>
             </div>
-        )}
           </div>
+        )}
+      </div>
     </main >
   );
 }
