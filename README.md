@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 
 ## Live Demo Link
-Live Demo: https://lnkd.in/gK-hCMpt
+Live Demo: https://lexguard-seven.vercel.app/
 
 
 ## Getting Started
