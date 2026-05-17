@@ -1,19 +1,36 @@
-# lexguard
-An AI-powered legal awareness system that helps people understand the hidden consequences of agreements before signing them.
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Problem Statement
-Design and develop an AI-powered contract intelligence platform capable of analyzing legal and quasi-legal documents to identify potentially harmful, exploitative, ambiguous, or high-risk clauses before users agree to them.
-The system should extract and classify important clauses, evaluate contractual risks, reason about possible real-world implications, and provide interpretable explanations from the perspective of the affected individual or organization.
-The platform should support multiple categories of agreements and provide users with meaningful legal awareness rather than simple text summarization.
+## Getting Started
 
-## Objectives
-The proposed solution should aim to:
-Analyze uploaded legal documents and extract meaningful contractual clauses
-Identify hidden liabilities, unfavorable obligations, and one-sided legal conditions
-Detect ambiguous or potentially exploitative language
-Highlight privacy, financial, employment, intellectual property, and compliance-related risks
-Provide understandable explanations of contractual implications in plain language
-Generate severity-based risk scores or classifications
-Improve transparency and informed decision-making for users
+First, run the development server:
 
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
