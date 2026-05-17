@@ -7,7 +7,7 @@ export async function POST(req: Request) {
         const { contractText } = await req.json();
 
         const model = genAI.getGenerativeModel({
-            model: "gemini-2.0-flash",
+            model: "gemini-2.5-flash",
         });
         const prompt = `
 You are LexGuard AI.
@@ -17,8 +17,9 @@ Analyze this contract.
 Return ONLY valid JSON.
 
 {
-  "overall_risk_score": 72,
-  "fairness_analysis": "Company Favored",
+"overall_risk_score": 72,
+"confidence_score": 94,
+"fairness_analysis": "Company Favored",
   "hidden_concerns": [
     "Non-compete may restrict future employment"
   ],

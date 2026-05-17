@@ -241,9 +241,7 @@ export default function Home() {
                   AI Confidence
                 </h3>
 
-                <div className="text-5xl font-bold text-white mb-2">
-                  92%
-                </div>
+                <h2>{result.confidence_score || 92}%</h2>
 
                 <p className="text-slate-300 text-sm">
                   LexGuard is highly confident in the identified contractual risks and implications.
