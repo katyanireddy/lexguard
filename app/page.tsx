@@ -164,7 +164,7 @@ export default function Home() {
                       <div
                         className="h-full bg-gradient-to-r from-red-500 to-orange-400 rounded-full transition-all duration-700"
                         style={{
-                          width: `${animatedScore}%`,
+                          width: `${result.overall_risk_score}%`,
                         }}
                       />
                     </div>
@@ -241,7 +241,7 @@ export default function Home() {
                   AI Confidence
                 </h3>
 
-                <h2>{result.confidence_score || 92}%</h2>
+                <h2>{result?.confidence_score ?? 92}%</h2>
 
                 <p className="text-slate-300 text-sm">
                   LexGuard is highly confident in the identified contractual risks and implications.
